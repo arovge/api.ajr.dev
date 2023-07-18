@@ -1,9 +1,11 @@
-name = "api"
-main = "src/index.ts"
-compatibility_date = "2022-07-11"
+name = "api_ajr_dev"
+main = "build/worker/shim.mjs"
+compatibility_date = "2023-03-22"
 
-account_id = "YOUR_ACCOUNT_ID"
+[build]
+command = "cargo install -q worker-build && worker-build --release"
 
 [[r2_buckets]]
 binding = 'FILES_BUCKET'
 bucket_name = 'files'
+preview_bucket_name = 'files-dev'
