@@ -4,10 +4,10 @@ use crate::common;
 const FILES_BUCKET: &str = "FILES_BUCKET";
 
 pub async fn get_file_handler(env: Env, key: &str) -> Result<Response> {
-    let file = get_file(&env, key).await?;
-    let Some(obj) = file else { return common::not_found(); };
-    let txt = obj.body().unwrap().text().await?;
-    common::ok_with_body(&txt)
+    let Some(file) = get_file(&env, key).await? else {
+        return common::not_found();
+    };
+    common::ok_with_file(file).await
 }
 
 pub async fn put_file_handler(mut req: Request, env: Env, key: &str) -> Result<Response> {

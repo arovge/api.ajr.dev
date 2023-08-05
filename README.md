@@ -2,25 +2,28 @@
 
 Cloudflare worker to respond to requests to api.ajr.dev
 
-### Deployment
+### Local dev
 
-Make sure `wrangler` CLI is authenticated and `account_id` in `wrangler.toml` is replaced with your Cloudflare account id.
+Make sure you follow the rust wasm guide and get the `wrangler` npm package installed:
+- https://developers.cloudflare.com/workers/runtime-apis/webassembly/rust/
+- https://developers.cloudflare.com/workers/wrangler/install-and-update/
 
-Then run:
-
-```
-$ wrangler publish
-```
-
-### Usage
-This template starts you off with a `src/lib.rs` file, acting as an entrypoint for requests hitting your Worker. Feel free to add more code in this file, or create Rust modules anywhere else for this project to use.
-
-With `wrangler`, you can build, test, and deploy your Worker with the following commands:
+Run the following command to start a local server:
 
 ```sh
 # run your Worker in an ideal development workflow (with a local server, file watcher & more)
 $ npm run dev
+```
 
+At time of writing, the following are broken for me:
+- Hot reloading on save (at least on M1 mac)
+- R2 usage locally
+
+### Deployment
+
+Wrangler CLI will handle authenticating you with your cloudflare account. You just need to run:
+
+```sh
 # deploy your Worker globally to the Cloudflare network (update your wrangler.toml file for configuration)
 $ npm run deploy
 ```
